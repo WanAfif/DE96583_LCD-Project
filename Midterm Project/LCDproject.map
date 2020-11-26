@@ -1,0 +1,112 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Thu Nov 26 18:14:42 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000004
+                   .org_2       code   0x000008    program   0x000002
+                   .org_3       code   0x000018    program   0x0004b2
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000003      
+                            0x000008    0x000009      
+                            0x000018    0x0004c9      
+            1208 out of 33048 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     AFIF   0x000238    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                   AGAIN1   0x00003a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                   AGAIN2   0x00003e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    Blank   0x0003e4    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    DELAY   0x000036    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                       ID   0x0002ba    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkEIGHT   0x000496    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkFIVE   0x000478    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkFOUR   0x00046e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                  checkID   0x000448    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkNAME   0x000440    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkNINE   0x0004a0    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkONE   0x000450    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkSEVEN   0x00048c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkSIX   0x000482    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkSTAR   0x0004aa    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkTAG   0x0004be    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkTHREE   0x000464    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkTWO   0x00045a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkZERO   0x0004b4    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp0   0x00030c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp1   0x00031e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp2   0x000330    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp3   0x000342    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp4   0x000354    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp5   0x000366    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp6   0x000378    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp7   0x00038a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp8   0x00039c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp9   0x0003ae    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 dispHASH   0x0003d2    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 dispSTAR   0x0003c0    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outA   0x0003ee    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outB   0x0003f8    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outC   0x000402    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outD   0x00040c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                   regCMD   0x00001a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                  regDATA   0x000028    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    start   0x000416    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   regCMD   0x00001a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                  regDATA   0x000028    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    DELAY   0x000036    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                   AGAIN1   0x00003a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                   AGAIN2   0x00003e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     AFIF   0x000238    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                       ID   0x0002ba    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp0   0x00030c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp1   0x00031e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp2   0x000330    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp3   0x000342    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp4   0x000354    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp5   0x000366    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp6   0x000378    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp7   0x00038a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp8   0x00039c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    disp9   0x0003ae    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 dispSTAR   0x0003c0    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 dispHASH   0x0003d2    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    Blank   0x0003e4    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outA   0x0003ee    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outB   0x0003f8    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outC   0x000402    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                     outD   0x00040c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                    start   0x000416    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkNAME   0x000440    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                  checkID   0x000448    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkONE   0x000450    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkTWO   0x00045a    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkTHREE   0x000464    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkFOUR   0x00046e    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkFIVE   0x000478    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkSIX   0x000482    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkSEVEN   0x00048c    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+               checkEIGHT   0x000496    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkNINE   0x0004a0    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkSTAR   0x0004aa    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                checkZERO   0x0004b4    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+                 checkTAG   0x0004be    program     static D:\Sem 1 20-21\Microcontroller\MPLAB\LCDproject.asm
+
+

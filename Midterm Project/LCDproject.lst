@@ -1,0 +1,2015 @@
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001                         #include<p18F4550.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC18F4550 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      01764         LIST
+                      00002 
+  00000000            00003 innerloop       set     0x00
+  00000001            00004 outerloop       set     0x01
+                      00005 
+  00000F82            00006 LCD                     set     PORTC
+                      00007                         
+000000                00008                         org 0x00
+000000 EF0B F002      00009                         goto start
+000008                00010                         org 0x08
+000008 0010           00011                         retfie
+000018                00012                         org 0x18
+000018 0010           00013                         retfie
+                      00014 
+                      00015 ;***************************************
+                      00016 ;Subroutine for LCD
+                      00017 ;***************************************
+00001A 9882           00018 regCMD          BCF             LCD, 4, A               ;RS=0
+00001C 9A82           00019                         BCF             LCD, 5, A               ;RW=0
+00001E 8C82           00020                         BSF             LCD, 6, A               ;EN=1
+000020 EC1B F000      00021                         CALL    DELAY
+000024 9C82           00022                         BCF             LCD, 6, A               ;EN=0
+000026 0012           00023                         RETURN
+                      00024 
+000028 8882           00025 regDATA         BSF             LCD, 4, A               ;RS=1
+00002A 9A82           00026                         BCF             LCD, 5, A               ;RW=0
+00002C 8C82           00027                         BSF             LCD, 6, A               ;EN=1
+00002E EC1B F000      00028                         CALL    DELAY
+000032 9C82           00029                         BCF             LCD, 6, A               ;EN=0
+000034 0012           00030                         RETURN
+                      00031 
+                      00032 ;***************************************
+                      00033 ;Subroutine for 0.4sec delay
+                      00034 ;***************************************
+                      00035 dup_nop         macro num
+                      00036                         variable i
+                      00037 i = 0
+                      00038                         while i < num
+                      00039                         nop
+                      00040 i += 1
+                      00041                         endw
+                      00042                         endm
+                      00043 
+                      00044 
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000036 0E20           00045 DELAY           MOVLW   D'32'                   ;0.4sec delay subroutine for
+000038 6E01           00046                         MOVWF   outerloop, A    ;20MHz crystal frequency
+00003A 0EFA           00047 AGAIN1          MOVLW   D'250'
+00003C 6E00           00048                         MOVWF   innerloop, A
+                      00049 AGAIN2          dup_nop D'247'
+  0000                    M                         variable i
+  00000000                M i = 0
+                          M                         while i < D'247'
+00003E 0000               M                         nop
+  00000001                M i += 1
+000040 0000               M                         nop
+  00000002                M i += 1
+000042 0000               M                         nop
+  00000003                M i += 1
+000044 0000               M                         nop
+  00000004                M i += 1
+000046 0000               M                         nop
+  00000005                M i += 1
+000048 0000               M                         nop
+  00000006                M i += 1
+00004A 0000               M                         nop
+  00000007                M i += 1
+00004C 0000               M                         nop
+  00000008                M i += 1
+00004E 0000               M                         nop
+  00000009                M i += 1
+000050 0000               M                         nop
+  0000000A                M i += 1
+000052 0000               M                         nop
+  0000000B                M i += 1
+000054 0000               M                         nop
+  0000000C                M i += 1
+000056 0000               M                         nop
+  0000000D                M i += 1
+000058 0000               M                         nop
+  0000000E                M i += 1
+00005A 0000               M                         nop
+  0000000F                M i += 1
+00005C 0000               M                         nop
+  00000010                M i += 1
+00005E 0000               M                         nop
+  00000011                M i += 1
+000060 0000               M                         nop
+  00000012                M i += 1
+000062 0000               M                         nop
+  00000013                M i += 1
+000064 0000               M                         nop
+  00000014                M i += 1
+000066 0000               M                         nop
+  00000015                M i += 1
+000068 0000               M                         nop
+  00000016                M i += 1
+00006A 0000               M                         nop
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  00000017                M i += 1
+00006C 0000               M                         nop
+  00000018                M i += 1
+00006E 0000               M                         nop
+  00000019                M i += 1
+000070 0000               M                         nop
+  0000001A                M i += 1
+000072 0000               M                         nop
+  0000001B                M i += 1
+000074 0000               M                         nop
+  0000001C                M i += 1
+000076 0000               M                         nop
+  0000001D                M i += 1
+000078 0000               M                         nop
+  0000001E                M i += 1
+00007A 0000               M                         nop
+  0000001F                M i += 1
+00007C 0000               M                         nop
+  00000020                M i += 1
+00007E 0000               M                         nop
+  00000021                M i += 1
+000080 0000               M                         nop
+  00000022                M i += 1
+000082 0000               M                         nop
+  00000023                M i += 1
+000084 0000               M                         nop
+  00000024                M i += 1
+000086 0000               M                         nop
+  00000025                M i += 1
+000088 0000               M                         nop
+  00000026                M i += 1
+00008A 0000               M                         nop
+  00000027                M i += 1
+00008C 0000               M                         nop
+  00000028                M i += 1
+00008E 0000               M                         nop
+  00000029                M i += 1
+000090 0000               M                         nop
+  0000002A                M i += 1
+000092 0000               M                         nop
+  0000002B                M i += 1
+000094 0000               M                         nop
+  0000002C                M i += 1
+000096 0000               M                         nop
+  0000002D                M i += 1
+000098 0000               M                         nop
+  0000002E                M i += 1
+00009A 0000               M                         nop
+  0000002F                M i += 1
+00009C 0000               M                         nop
+  00000030                M i += 1
+00009E 0000               M                         nop
+  00000031                M i += 1
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000A0 0000               M                         nop
+  00000032                M i += 1
+0000A2 0000               M                         nop
+  00000033                M i += 1
+0000A4 0000               M                         nop
+  00000034                M i += 1
+0000A6 0000               M                         nop
+  00000035                M i += 1
+0000A8 0000               M                         nop
+  00000036                M i += 1
+0000AA 0000               M                         nop
+  00000037                M i += 1
+0000AC 0000               M                         nop
+  00000038                M i += 1
+0000AE 0000               M                         nop
+  00000039                M i += 1
+0000B0 0000               M                         nop
+  0000003A                M i += 1
+0000B2 0000               M                         nop
+  0000003B                M i += 1
+0000B4 0000               M                         nop
+  0000003C                M i += 1
+0000B6 0000               M                         nop
+  0000003D                M i += 1
+0000B8 0000               M                         nop
+  0000003E                M i += 1
+0000BA 0000               M                         nop
+  0000003F                M i += 1
+0000BC 0000               M                         nop
+  00000040                M i += 1
+0000BE 0000               M                         nop
+  00000041                M i += 1
+0000C0 0000               M                         nop
+  00000042                M i += 1
+0000C2 0000               M                         nop
+  00000043                M i += 1
+0000C4 0000               M                         nop
+  00000044                M i += 1
+0000C6 0000               M                         nop
+  00000045                M i += 1
+0000C8 0000               M                         nop
+  00000046                M i += 1
+0000CA 0000               M                         nop
+  00000047                M i += 1
+0000CC 0000               M                         nop
+  00000048                M i += 1
+0000CE 0000               M                         nop
+  00000049                M i += 1
+0000D0 0000               M                         nop
+  0000004A                M i += 1
+0000D2 0000               M                         nop
+  0000004B                M i += 1
+0000D4 0000               M                         nop
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000004C                M i += 1
+0000D6 0000               M                         nop
+  0000004D                M i += 1
+0000D8 0000               M                         nop
+  0000004E                M i += 1
+0000DA 0000               M                         nop
+  0000004F                M i += 1
+0000DC 0000               M                         nop
+  00000050                M i += 1
+0000DE 0000               M                         nop
+  00000051                M i += 1
+0000E0 0000               M                         nop
+  00000052                M i += 1
+0000E2 0000               M                         nop
+  00000053                M i += 1
+0000E4 0000               M                         nop
+  00000054                M i += 1
+0000E6 0000               M                         nop
+  00000055                M i += 1
+0000E8 0000               M                         nop
+  00000056                M i += 1
+0000EA 0000               M                         nop
+  00000057                M i += 1
+0000EC 0000               M                         nop
+  00000058                M i += 1
+0000EE 0000               M                         nop
+  00000059                M i += 1
+0000F0 0000               M                         nop
+  0000005A                M i += 1
+0000F2 0000               M                         nop
+  0000005B                M i += 1
+0000F4 0000               M                         nop
+  0000005C                M i += 1
+0000F6 0000               M                         nop
+  0000005D                M i += 1
+0000F8 0000               M                         nop
+  0000005E                M i += 1
+0000FA 0000               M                         nop
+  0000005F                M i += 1
+0000FC 0000               M                         nop
+  00000060                M i += 1
+0000FE 0000               M                         nop
+  00000061                M i += 1
+000100 0000               M                         nop
+  00000062                M i += 1
+000102 0000               M                         nop
+  00000063                M i += 1
+000104 0000               M                         nop
+  00000064                M i += 1
+000106 0000               M                         nop
+  00000065                M i += 1
+000108 0000               M                         nop
+  00000066                M i += 1
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00010A 0000               M                         nop
+  00000067                M i += 1
+00010C 0000               M                         nop
+  00000068                M i += 1
+00010E 0000               M                         nop
+  00000069                M i += 1
+000110 0000               M                         nop
+  0000006A                M i += 1
+000112 0000               M                         nop
+  0000006B                M i += 1
+000114 0000               M                         nop
+  0000006C                M i += 1
+000116 0000               M                         nop
+  0000006D                M i += 1
+000118 0000               M                         nop
+  0000006E                M i += 1
+00011A 0000               M                         nop
+  0000006F                M i += 1
+00011C 0000               M                         nop
+  00000070                M i += 1
+00011E 0000               M                         nop
+  00000071                M i += 1
+000120 0000               M                         nop
+  00000072                M i += 1
+000122 0000               M                         nop
+  00000073                M i += 1
+000124 0000               M                         nop
+  00000074                M i += 1
+000126 0000               M                         nop
+  00000075                M i += 1
+000128 0000               M                         nop
+  00000076                M i += 1
+00012A 0000               M                         nop
+  00000077                M i += 1
+00012C 0000               M                         nop
+  00000078                M i += 1
+00012E 0000               M                         nop
+  00000079                M i += 1
+000130 0000               M                         nop
+  0000007A                M i += 1
+000132 0000               M                         nop
+  0000007B                M i += 1
+000134 0000               M                         nop
+  0000007C                M i += 1
+000136 0000               M                         nop
+  0000007D                M i += 1
+000138 0000               M                         nop
+  0000007E                M i += 1
+00013A 0000               M                         nop
+  0000007F                M i += 1
+00013C 0000               M                         nop
+  00000080                M i += 1
+00013E 0000               M                         nop
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  00000081                M i += 1
+000140 0000               M                         nop
+  00000082                M i += 1
+000142 0000               M                         nop
+  00000083                M i += 1
+000144 0000               M                         nop
+  00000084                M i += 1
+000146 0000               M                         nop
+  00000085                M i += 1
+000148 0000               M                         nop
+  00000086                M i += 1
+00014A 0000               M                         nop
+  00000087                M i += 1
+00014C 0000               M                         nop
+  00000088                M i += 1
+00014E 0000               M                         nop
+  00000089                M i += 1
+000150 0000               M                         nop
+  0000008A                M i += 1
+000152 0000               M                         nop
+  0000008B                M i += 1
+000154 0000               M                         nop
+  0000008C                M i += 1
+000156 0000               M                         nop
+  0000008D                M i += 1
+000158 0000               M                         nop
+  0000008E                M i += 1
+00015A 0000               M                         nop
+  0000008F                M i += 1
+00015C 0000               M                         nop
+  00000090                M i += 1
+00015E 0000               M                         nop
+  00000091                M i += 1
+000160 0000               M                         nop
+  00000092                M i += 1
+000162 0000               M                         nop
+  00000093                M i += 1
+000164 0000               M                         nop
+  00000094                M i += 1
+000166 0000               M                         nop
+  00000095                M i += 1
+000168 0000               M                         nop
+  00000096                M i += 1
+00016A 0000               M                         nop
+  00000097                M i += 1
+00016C 0000               M                         nop
+  00000098                M i += 1
+00016E 0000               M                         nop
+  00000099                M i += 1
+000170 0000               M                         nop
+  0000009A                M i += 1
+000172 0000               M                         nop
+  0000009B                M i += 1
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000174 0000               M                         nop
+  0000009C                M i += 1
+000176 0000               M                         nop
+  0000009D                M i += 1
+000178 0000               M                         nop
+  0000009E                M i += 1
+00017A 0000               M                         nop
+  0000009F                M i += 1
+00017C 0000               M                         nop
+  000000A0                M i += 1
+00017E 0000               M                         nop
+  000000A1                M i += 1
+000180 0000               M                         nop
+  000000A2                M i += 1
+000182 0000               M                         nop
+  000000A3                M i += 1
+000184 0000               M                         nop
+  000000A4                M i += 1
+000186 0000               M                         nop
+  000000A5                M i += 1
+000188 0000               M                         nop
+  000000A6                M i += 1
+00018A 0000               M                         nop
+  000000A7                M i += 1
+00018C 0000               M                         nop
+  000000A8                M i += 1
+00018E 0000               M                         nop
+  000000A9                M i += 1
+000190 0000               M                         nop
+  000000AA                M i += 1
+000192 0000               M                         nop
+  000000AB                M i += 1
+000194 0000               M                         nop
+  000000AC                M i += 1
+000196 0000               M                         nop
+  000000AD                M i += 1
+000198 0000               M                         nop
+  000000AE                M i += 1
+00019A 0000               M                         nop
+  000000AF                M i += 1
+00019C 0000               M                         nop
+  000000B0                M i += 1
+00019E 0000               M                         nop
+  000000B1                M i += 1
+0001A0 0000               M                         nop
+  000000B2                M i += 1
+0001A2 0000               M                         nop
+  000000B3                M i += 1
+0001A4 0000               M                         nop
+  000000B4                M i += 1
+0001A6 0000               M                         nop
+  000000B5                M i += 1
+0001A8 0000               M                         nop
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  000000B6                M i += 1
+0001AA 0000               M                         nop
+  000000B7                M i += 1
+0001AC 0000               M                         nop
+  000000B8                M i += 1
+0001AE 0000               M                         nop
+  000000B9                M i += 1
+0001B0 0000               M                         nop
+  000000BA                M i += 1
+0001B2 0000               M                         nop
+  000000BB                M i += 1
+0001B4 0000               M                         nop
+  000000BC                M i += 1
+0001B6 0000               M                         nop
+  000000BD                M i += 1
+0001B8 0000               M                         nop
+  000000BE                M i += 1
+0001BA 0000               M                         nop
+  000000BF                M i += 1
+0001BC 0000               M                         nop
+  000000C0                M i += 1
+0001BE 0000               M                         nop
+  000000C1                M i += 1
+0001C0 0000               M                         nop
+  000000C2                M i += 1
+0001C2 0000               M                         nop
+  000000C3                M i += 1
+0001C4 0000               M                         nop
+  000000C4                M i += 1
+0001C6 0000               M                         nop
+  000000C5                M i += 1
+0001C8 0000               M                         nop
+  000000C6                M i += 1
+0001CA 0000               M                         nop
+  000000C7                M i += 1
+0001CC 0000               M                         nop
+  000000C8                M i += 1
+0001CE 0000               M                         nop
+  000000C9                M i += 1
+0001D0 0000               M                         nop
+  000000CA                M i += 1
+0001D2 0000               M                         nop
+  000000CB                M i += 1
+0001D4 0000               M                         nop
+  000000CC                M i += 1
+0001D6 0000               M                         nop
+  000000CD                M i += 1
+0001D8 0000               M                         nop
+  000000CE                M i += 1
+0001DA 0000               M                         nop
+  000000CF                M i += 1
+0001DC 0000               M                         nop
+  000000D0                M i += 1
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001DE 0000               M                         nop
+  000000D1                M i += 1
+0001E0 0000               M                         nop
+  000000D2                M i += 1
+0001E2 0000               M                         nop
+  000000D3                M i += 1
+0001E4 0000               M                         nop
+  000000D4                M i += 1
+0001E6 0000               M                         nop
+  000000D5                M i += 1
+0001E8 0000               M                         nop
+  000000D6                M i += 1
+0001EA 0000               M                         nop
+  000000D7                M i += 1
+0001EC 0000               M                         nop
+  000000D8                M i += 1
+0001EE 0000               M                         nop
+  000000D9                M i += 1
+0001F0 0000               M                         nop
+  000000DA                M i += 1
+0001F2 0000               M                         nop
+  000000DB                M i += 1
+0001F4 0000               M                         nop
+  000000DC                M i += 1
+0001F6 0000               M                         nop
+  000000DD                M i += 1
+0001F8 0000               M                         nop
+  000000DE                M i += 1
+0001FA 0000               M                         nop
+  000000DF                M i += 1
+0001FC 0000               M                         nop
+  000000E0                M i += 1
+0001FE 0000               M                         nop
+  000000E1                M i += 1
+000200 0000               M                         nop
+  000000E2                M i += 1
+000202 0000               M                         nop
+  000000E3                M i += 1
+000204 0000               M                         nop
+  000000E4                M i += 1
+000206 0000               M                         nop
+  000000E5                M i += 1
+000208 0000               M                         nop
+  000000E6                M i += 1
+00020A 0000               M                         nop
+  000000E7                M i += 1
+00020C 0000               M                         nop
+  000000E8                M i += 1
+00020E 0000               M                         nop
+  000000E9                M i += 1
+000210 0000               M                         nop
+  000000EA                M i += 1
+000212 0000               M                         nop
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  000000EB                M i += 1
+000214 0000               M                         nop
+  000000EC                M i += 1
+000216 0000               M                         nop
+  000000ED                M i += 1
+000218 0000               M                         nop
+  000000EE                M i += 1
+00021A 0000               M                         nop
+  000000EF                M i += 1
+00021C 0000               M                         nop
+  000000F0                M i += 1
+00021E 0000               M                         nop
+  000000F1                M i += 1
+000220 0000               M                         nop
+  000000F2                M i += 1
+000222 0000               M                         nop
+  000000F3                M i += 1
+000224 0000               M                         nop
+  000000F4                M i += 1
+000226 0000               M                         nop
+  000000F5                M i += 1
+000228 0000               M                         nop
+  000000F6                M i += 1
+00022A 0000               M                         nop
+  000000F7                M i += 1
+                          M                         endw
+00022C 2E00           00050                         DECFSZ  innerloop, F, A
+00022E D707           00051                         BRA             AGAIN2
+000230 2E01           00052                         DECFSZ  outerloop, F, A
+000232 D703           00053                         BRA             AGAIN1
+000234 0000           00054                         NOP
+000236 0012           00055                         RETURN
+                      00056 
+                      00057 ;***************************************
+                      00058 ;Display My NAME
+                      00059 ;***************************************
+000238 0E01           00060 AFIF            MOVLW   0x01                    ;clear screen
+00023A 6E83           00061                         MOVWF   PORTD, A
+00023C EC0D F000      00062                         CALL    regCMD
+                      00063 
+000240 0E20           00064                         MOVLW   D'32'                   ;make space
+000242 6E83           00065                         MOVWF   PORTD, A
+000244 EC14 F000      00066                         CALL    regDATA
+                      00067 
+000248 0E57           00068                         MOVLW   D'87'                   ;show "W"
+00024A 6E83           00069                         MOVWF   PORTD, A
+00024C EC14 F000      00070                         CALL    regDATA
+000250 0E61           00071                         MOVLW   D'97'                   ;show "a"
+000252 6E83           00072                         MOVWF   PORTD, A
+000254 EC14 F000      00073                         CALL    regDATA
+000258 0E6E           00074                         MOVLW   D'110'                  ;show "n"
+00025A 6E83           00075                         MOVWF   PORTD, A
+00025C EC14 F000      00076                         CALL    regDATA
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00077 
+000260 0E20           00078                         MOVLW   D'32'                   ;make space
+000262 6E83           00079                         MOVWF   PORTD, A
+000264 EC14 F000      00080                         CALL    regDATA
+                      00081 
+000268 0E41           00082                         MOVLW   D'65'                   ;show "A"
+00026A 6E83           00083                         MOVWF   PORTD, A
+00026C EC14 F000      00084                         CALL    regDATA
+000270 0E66           00085                         MOVLW   D'102'                  ;show "f"
+000272 6E83           00086                         MOVWF   PORTD, A
+000274 EC14 F000      00087                         CALL    regDATA
+000278 0E69           00088                         MOVLW   D'105'                  ;show "i"
+00027A 6E83           00089                         MOVWF   PORTD, A
+00027C EC14 F000      00090                         CALL    regDATA
+000280 0E66           00091                         MOVLW   D'102'                  ;show "f"
+000282 6E83           00092                         MOVWF   PORTD, A
+000284 EC14 F000      00093                         CALL    regDATA
+                      00094 
+000288 0E20           00095                         MOVLW   D'32'                   ;make space
+00028A 6E83           00096                         MOVWF   PORTD, A
+00028C EC14 F000      00097                         CALL    regDATA
+                      00098 
+000290 0E48           00099                         MOVLW   D'72'                   ;show "H"
+000292 6E83           00100                         MOVWF   PORTD, A
+000294 EC14 F000      00101                         CALL    regDATA
+000298 0E69           00102                         MOVLW   D'105'                  ;show "i"
+00029A 6E83           00103                         MOVWF   PORTD, A
+00029C EC14 F000      00104                         CALL    regDATA
+0002A0 0E6C           00105                         MOVLW   D'108'                  ;show "l"
+0002A2 6E83           00106                         MOVWF   PORTD, A
+0002A4 EC14 F000      00107                         CALL    regDATA
+0002A8 0E6D           00108                         MOVLW   D'109'                  ;show "m"
+0002AA 6E83           00109                         MOVWF   PORTD, A
+0002AC EC14 F000      00110                         CALL    regDATA
+0002B0 0E69           00111                         MOVLW   D'105'                  ;show "i"
+0002B2 6E83           00112                         MOVWF   PORTD, A
+0002B4 EC14 F000      00113                         CALL    regDATA
+                      00114 
+0002B8 D0C3           00115                         BRA             checkNAME
+                      00116 
+                      00117 ;***************************************
+                      00118 ;Display ID
+                      00119 ;***************************************
+0002BA 0E01           00120 ID                      MOVLW   0x01                    ;clear screen
+0002BC 6E83           00121                         MOVWF   PORTD, A
+0002BE EC0D F000      00122                         CALL    regCMD
+                      00123 
+0002C2 0E20           00124                         MOVLW   D'32'                   ;make space
+0002C4 6E83           00125                         MOVWF   PORTD, A
+0002C6 EC14 F000      00126                         CALL    regDATA
+0002CA 0E20           00127                         MOVLW   D'32'
+0002CC 6E83           00128                         MOVWF   PORTD, A
+0002CE EC14 F000      00129                         CALL    regDATA
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00130 
+0002D2 0E44           00131                         MOVLW   D'68'                   ;show "D"
+0002D4 6E83           00132                         MOVWF   PORTD, A
+0002D6 EC14 F000      00133                         CALL    regDATA
+0002DA 0E45           00134                         MOVLW   D'69'                   ;show "E"
+0002DC 6E83           00135                         MOVWF   PORTD, A
+0002DE EC14 F000      00136                         CALL    regDATA
+                      00137 
+0002E2 0E39           00138                         MOVLW   D'57'                   ;show "9"
+0002E4 6E83           00139                         MOVWF   PORTD, A
+0002E6 EC14 F000      00140                         CALL    regDATA
+0002EA 0E36           00141                         MOVLW   D'54'                   ;show "6"
+0002EC 6E83           00142                         MOVWF   PORTD, A
+0002EE EC14 F000      00143                         CALL    regDATA
+0002F2 0E35           00144                         MOVLW   D'53'                   ;show "5"
+0002F4 6E83           00145                         MOVWF   PORTD, A
+0002F6 EC14 F000      00146                         CALL    regDATA
+0002FA 0E38           00147                         MOVLW   D'56'                   ;show "8"
+0002FC 6E83           00148                         MOVWF   PORTD, A
+0002FE EC14 F000      00149                         CALL    regDATA
+000302 0E33           00150                         MOVLW   D'51'                   ;show "3"
+000304 6E83           00151                         MOVWF   PORTD, A
+000306 EC14 F000      00152                         CALL    regDATA
+                      00153 
+00030A D09E           00154                         BRA             checkID
+                      00155 
+                      00156 ;***************************************
+                      00157 ;Display number on KEYPAD
+                      00158 ;***************************************
+00030C 0EC0           00159 disp0           MOVLW   0xC0                    ;2nd line
+00030E 6E83           00160                         MOVWF   PORTD, A
+000310 EC0D F000      00161                         CALL    regCMD
+000314 0E30           00162                         MOVLW   D'48'                   ;show "0"
+000316 6E83           00163                         MOVWF   PORTD, A
+000318 EC14 F000      00164                         CALL    regDATA
+00031C D0CB           00165                         BRA             checkZERO
+                      00166 
+00031E 0EC0           00167 disp1           MOVLW   0xC0                    ;2nd line
+000320 6E83           00168                         MOVWF   PORTD, A
+000322 EC0D F000      00169                         CALL    regCMD
+000326 0E31           00170                         MOVLW   D'49'                   ;show "1"
+000328 6E83           00171                         MOVWF   PORTD, A
+00032A EC14 F000      00172                         CALL    regDATA
+00032E D090           00173                         BRA             checkONE
+                      00174 
+000330 0EC0           00175 disp2           MOVLW   0xC0                    ;2nd line
+000332 6E83           00176                         MOVWF   PORTD, A
+000334 EC0D F000      00177                         CALL    regCMD
+000338 0E32           00178                         MOVLW   D'50'                   ;show "2"
+00033A 6E83           00179                         MOVWF   PORTD, A
+00033C EC14 F000      00180                         CALL    regDATA
+000340 D08C           00181                         BRA             checkTWO
+                      00182 
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000342 0EC0           00183 disp3           MOVLW   0xC0                    ;2nd line
+000344 6E83           00184                         MOVWF   PORTD, A
+000346 EC0D F000      00185                         CALL    regCMD
+00034A 0E33           00186                         MOVLW   D'51'                   ;show "3"
+00034C 6E83           00187                         MOVWF   PORTD, A
+00034E EC14 F000      00188                         CALL    regDATA
+000352 D088           00189                         BRA             checkTHREE
+                      00190 
+000354 0EC0           00191 disp4           MOVLW   0xC0                    ;2nd line
+000356 6E83           00192                         MOVWF   PORTD, A
+000358 EC0D F000      00193                         CALL    regCMD
+00035C 0E34           00194                         MOVLW   D'52'                   ;show "4"
+00035E 6E83           00195                         MOVWF   PORTD, A
+000360 EC14 F000      00196                         CALL    regDATA
+000364 D084           00197                         BRA             checkFOUR
+                      00198 
+000366 0EC0           00199 disp5           MOVLW   0xC0                    ;2nd line
+000368 6E83           00200                         MOVWF   PORTD, A
+00036A EC0D F000      00201                         CALL    regCMD
+00036E 0E35           00202                         MOVLW   D'53'                   ;show "5"
+000370 6E83           00203                         MOVWF   PORTD, A
+000372 EC14 F000      00204                         CALL    regDATA
+000376 D080           00205                         BRA             checkFIVE
+                      00206 
+000378 0EC0           00207 disp6           MOVLW   0xC0                    ;2nd line
+00037A 6E83           00208                         MOVWF   PORTD, A
+00037C EC0D F000      00209                         CALL    regCMD
+000380 0E36           00210                         MOVLW   D'54'                   ;show "6"
+000382 6E83           00211                         MOVWF   PORTD, A
+000384 EC14 F000      00212                         CALL    regDATA
+000388 D07C           00213                         BRA             checkSIX
+                      00214 
+00038A 0EC0           00215 disp7           MOVLW   0xC0                    ;2nd line
+00038C 6E83           00216                         MOVWF   PORTD, A
+00038E EC0D F000      00217                         CALL    regCMD
+000392 0E37           00218                         MOVLW   D'55'                   ;show "7"
+000394 6E83           00219                         MOVWF   PORTD, A
+000396 EC14 F000      00220                         CALL    regDATA
+00039A D078           00221                         BRA             checkSEVEN
+                      00222 
+00039C 0EC0           00223 disp8           MOVLW   0xC0                    ;2nd line
+00039E 6E83           00224                         MOVWF   PORTD, A
+0003A0 EC0D F000      00225                         CALL    regCMD
+0003A4 0E38           00226                         MOVLW   D'56'                   ;show "8"
+0003A6 6E83           00227                         MOVWF   PORTD, A
+0003A8 EC14 F000      00228                         CALL    regDATA
+0003AC D074           00229                         BRA             checkEIGHT
+                      00230 
+0003AE 0EC0           00231 disp9           MOVLW   0xC0                    ;2nd line
+0003B0 6E83           00232                         MOVWF   PORTD, A
+0003B2 EC0D F000      00233                         CALL    regCMD
+0003B6 0E39           00234                         MOVLW   D'57'                   ;show "9"
+0003B8 6E83           00235                         MOVWF   PORTD, A
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0003BA EC14 F000      00236                         CALL    regDATA
+0003BE D070           00237                         BRA             checkNINE
+                      00238 
+0003C0 0EC0           00239 dispSTAR        MOVLW   0xC0                    ;2nd line
+0003C2 6E83           00240                         MOVWF   PORTD, A
+0003C4 EC0D F000      00241                         CALL    regCMD
+0003C8 0E2A           00242                         MOVLW   D'42'                   ;show "*"
+0003CA 6E83           00243                         MOVWF   PORTD, A
+0003CC EC14 F000      00244                         CALL    regDATA
+0003D0 D06C           00245                         BRA             checkSTAR
+                      00246 
+0003D2 0EC0           00247 dispHASH        MOVLW   0xC0                    ;2nd line
+0003D4 6E83           00248                         MOVWF   PORTD, A
+0003D6 EC0D F000      00249                         CALL    regCMD
+0003DA 0E23           00250                         MOVLW   D'35'                   ;show "#"
+0003DC 6E83           00251                         MOVWF   PORTD, A
+0003DE EC14 F000      00252                         CALL    regDATA
+0003E2 D06D           00253                         BRA             checkTAG
+                      00254 
+                      00255 
+                      00256 ;***************************************
+                      00257 ;clear LCD Display
+                      00258 ;***************************************
+0003E4 0E01           00259 Blank           MOVLW   0x01
+0003E6 6E83           00260                         MOVWF   PORTD, A
+0003E8 EC0D F000      00261                         CALL    regCMD
+0003EC 0012           00262                         RETURN
+                      00263 
+                      00264 ;***************************************
+                      00265 ;KEYPAD setting
+                      00266 ;***************************************
+0003EE 8881           00267 outA            BSF             PORTB, 4, A
+0003F0 9A81           00268                         BCF             PORTB, 5, A
+0003F2 9C81           00269                         BCF             PORTB, 6, A
+0003F4 9E81           00270                         BCF             PORTB, 7, A
+0003F6 0012           00271                         RETURN
+0003F8 9881           00272 outB            BCF             PORTB, 4, A
+0003FA 8A81           00273                         BSF             PORTB, 5, A
+0003FC 9C81           00274                         BCF             PORTB, 6, A
+0003FE 9E81           00275                         BCF             PORTB, 7, A
+000400 0012           00276                         RETURN
+000402 9881           00277 outC            BCF             PORTB, 4, A
+000404 9A81           00278                         BCF             PORTB, 5, A
+000406 8C81           00279                         BSF             PORTB, 6, A
+000408 9E81           00280                         BCF             PORTB, 7, A
+00040A 0012           00281                         RETURN
+00040C 9881           00282 outD            BCF             PORTB, 4, A
+00040E 9A81           00283                         BCF             PORTB, 5, A
+000410 9C81           00284                         BCF             PORTB, 6, A
+000412 8E81           00285                         BSF             PORTB, 7, A
+000414 0012           00286                         RETURN
+                      00287 
+                      00288 ;***************************************
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00289 ;My Main Program
+                      00290 ;***************************************
+000416 6892           00291 start           SETF    TRISA, A
+000418 0E0F           00292                         MOVLW   B'00001111'
+00041A 6E93           00293                         MOVWF   TRISB, A
+00041C 6A94           00294                         CLRF    TRISC, A
+00041E 6A95           00295                         CLRF    TRISD, A
+                      00296 
+                      00297 ;Configure 2 line and 5*7 matrix*******
+000420 0E38           00298                         MOVLW   0x38
+000422 6E83           00299                         MOVWF   PORTD, A
+000424 EC0D F000      00300                         CALL    regCMD
+                      00301 
+                      00302 ;Display on with cursor blinking*******
+000428 0E0E           00303                         MOVLW   0x0E
+00042A 6E83           00304                         MOVWF   PORTD, A
+00042C EC0D F000      00305                         CALL    regCMD
+                      00306 
+                      00307 ;Clear display*************************
+000430 0E01           00308                         MOVLW   0x01
+000432 6E83           00309                         MOVWF   PORTD, A
+000434 EC0D F000      00310                         CALL    regCMD
+                      00311 
+                      00312 ;1st line******************************
+000438 0E80           00313                         MOVLW   0x80
+00043A 6E83           00314                         MOVWF   PORTD, A
+00043C EC0D F000      00315                         CALL    regCMD
+                      00316 
+                      00317 ;polling push button*******************
+000440 B880           00318 checkNAME       BTFSC   PORTA, 4, A
+000442 D6FA           00319                         BRA             AFIF
+000444 ECF2 F001      00320                         CALL    Blank
+000448 B081           00321 checkID         BTFSC   PORTB, 0, A
+00044A D737           00322                         BRA             ID
+00044C ECF2 F001      00323                         CALL    Blank
+                      00324 
+                      00325 ;polling keypad*************************
+000450 ECF7 F001      00326 checkONE        CALL    outA
+000454 A281           00327                         BTFSS   PORTB, 1, A
+000456 D001           00328                         BRA             checkTWO
+000458 D762           00329                         BRA             disp1
+00045A ECF7 F001      00330 checkTWO        CALL    outA
+00045E A481           00331                         BTFSS   PORTB, 2, A
+000460 D001           00332                         BRA             checkTHREE
+000462 D766           00333                         BRA             disp2
+000464 ECF7 F001      00334 checkTHREE      CALL    outA
+000468 A681           00335                         BTFSS   PORTB, 3, A
+00046A D001           00336                         BRA             checkFOUR
+00046C D76A           00337                         BRA             disp3
+00046E ECFC F001      00338 checkFOUR       CALL    outB
+000472 A281           00339                         BTFSS   PORTB, 1, A
+000474 D001           00340                         BRA             checkFIVE
+000476 D76E           00341                         BRA             disp4
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000478 ECFC F001      00342 checkFIVE       CALL    outB
+00047C A481           00343                         BTFSS   PORTB, 2, A
+00047E D001           00344                         BRA             checkSIX
+000480 D772           00345                         BRA             disp5
+000482 ECFC F001      00346 checkSIX        CALL    outB
+000486 A681           00347                         BTFSS   PORTB, 3, A
+000488 D001           00348                         BRA             checkSEVEN
+00048A D776           00349                         BRA             disp6
+00048C EC01 F002      00350 checkSEVEN      CALL    outC
+000490 A281           00351                         BTFSS   PORTB, 1, A
+000492 D001           00352                         BRA             checkEIGHT
+000494 D77A           00353                         BRA             disp7
+000496 EC01 F002      00354 checkEIGHT      CALL    outC
+00049A A481           00355                         BTFSS   PORTB, 2, A
+00049C D001           00356                         BRA             checkNINE
+00049E D77E           00357                         BRA             disp8
+0004A0 EC01 F002      00358 checkNINE       CALL    outC
+0004A4 A681           00359                         BTFSS   PORTB, 3, A
+0004A6 D001           00360                         BRA             checkSTAR
+0004A8 D782           00361                         BRA             disp9
+0004AA EC06 F002      00362 checkSTAR       CALL    outD
+0004AE A281           00363                         BTFSS   PORTB, 1, A
+0004B0 D001           00364                         BRA             checkZERO
+0004B2 D786           00365                         BRA             dispSTAR
+0004B4 EC06 F002      00366 checkZERO       CALL    outD
+0004B8 A481           00367                         BTFSS   PORTB, 2, A
+0004BA D001           00368                         BRA             checkTAG
+0004BC D727           00369                         BRA             disp0
+0004BE EC06 F002      00370 checkTAG        CALL    outD
+0004C2 A681           00371                         BTFSS   PORTB, 3, A
+0004C4 D7BD           00372                         BRA             checkNAME
+0004C6 D785           00373                         BRA             dispHASH
+0004C8 D7BB           00374                         BRA             checkNAME
+                      00375 
+                      00376                         END
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+A                                 00000000
+ABDEN                             00000000
+ABDOVF                            00000007
+ACCESS                            00000000
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACQT0                             00000003
+ACQT1                             00000004
+ACQT2                             00000005
+ACTVIE                            00000002
+ACTVIF                            00000002
+ADCON0                            00000FC2
+ADCON1                            00000FC1
+ADCON2                            00000FC0
+ADCS0                             00000000
+ADCS1                             00000001
+ADCS2                             00000002
+ADDEN                             00000003
+ADDR0                             00000000
+ADDR1                             00000001
+ADDR2                             00000002
+ADDR3                             00000003
+ADDR4                             00000004
+ADDR5                             00000005
+ADDR6                             00000006
+ADEN                              00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADIP                              00000006
+ADON                              00000000
+ADRES                             00000FC3
+ADRESH                            00000FC4
+ADRESL                            00000FC3
+AFIF                              00000238
+AGAIN1                            0000003A
+AGAIN2                            0000003E
+AN0                               00000000
+AN1                               00000001
+AN2                               00000002
+AN3                               00000003
+AN4                               00000005
+BANKED                            00000001
+BAUDCON                           00000FB8
+BAUDCTL                           00000FB8
+BCLIE                             00000003
+BCLIF                             00000003
+BCLIP                             00000003
+BF                                00000000
+BGST                              00000005
+BOR                               00000000
+BRG16                             00000003
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BRGH                              00000002
+BSR                               00000FE0
+BTOEE                             00000004
+BTOEF                             00000004
+BTSEE                             00000007
+BTSEF                             00000007
+Blank                             000003E4
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1                              00000002
+CCP1AS                            00000FB6
+CCP1CON                           00000FBD
+CCP1DEL                           00000FB7
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1IP                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP2CON                           00000FBA
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2IP                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCPR1                             00000FBE
+CCPR1H                            00000FBF
+CCPR1L                            00000FBE
+CCPR2                             00000FBB
+CCPR2H                            00000FBC
+CCPR2L                            00000FBB
+CFGS                              00000006
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CIS                               00000003
+CK                                00000006
+CK1SPP                            00000000
+CK2SPP                            00000001
+CKE                               00000006
+CKP                               00000004
+CLK1EN                            00000004
+CLKCFG0                           00000006
+CLKCFG1                           00000007
+CM0                               00000000
+CM1                               00000001
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CM2                               00000002
+CMCON                             00000FB4
+CMIE                              00000006
+CMIF                              00000006
+CMIP                              00000006
+CRC16EE                           00000002
+CRC16EF                           00000002
+CRC5EE                            00000001
+CRC5EF                            00000001
+CREN                              00000004
+CSEN                              00000005
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            00000FB5
+CVREF                             00000004
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+CVRSS                             00000004
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+DDRA                              TRISA
+DDRB                              TRISB
+DDRC                              TRISC
+DDRD                              TRISD
+DDRE                              TRISE
+DELAY                             00000036
+DFN8EE                            00000003
+DFN8EF                            00000003
+DIR                               00000002
+DONE                              00000001
+D_A                               00000005
+D_NOT_A                           00000005
+ECCP1AS                           00000FB6
+ECCP1CON                          00000FBD
+ECCP1DEL                          00000FB7
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             00000FA9
+EECON1                            00000FA6
+EECON2                            00000FA7
+EEDATA                            00000FA8
+EEIE                              00000004
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+EEIF                              00000004
+EEIP                              00000004
+EEPGD                             00000007
+ENDP0                             00000003
+ENDP1                             00000004
+ENDP2                             00000005
+ENDP3                             00000006
+EPCONDIS                          00000003
+EPHSHK                            00000004
+EPINEN                            00000001
+EPOUTEN                           00000002
+EPSTALL                           00000000
+FAST                              00000001
+FERR                              00000002
+FLTS                              00000002
+FREE                              00000004
+FRM0                              00000000
+FRM1                              00000001
+FRM10                             00000002
+FRM2                              00000002
+FRM3                              00000003
+FRM4                              00000004
+FRM5                              00000005
+FRM6                              00000006
+FRM7                              00000007
+FRM8                              00000000
+FRM9                              00000001
+FSEN                              00000002
+FSR0                              00000000
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1                              00000001
+FSR1H                             00000FE2
+FSR1L                             00000FE1
+FSR2                              00000002
+FSR2H                             00000FDA
+FSR2L                             00000FD9
+GCEN                              00000007
+GIE                               00000007
+GIEH                              00000007
+GIEL                              00000006
+GIE_GIEH                          00000007
+GO                                00000001
+GO_DONE                           00000001
+GO_NOT_DONE                       00000001
+HLVDCON                           00000FD2
+HLVDEN                            00000004
+HLVDIE                            00000002
+HLVDIF                            00000002
+HLVDIN                            00000005
+HLVDIP                            00000002
+HLVDL0                            00000000
+HLVDL1                            00000001
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+HLVDL2                            00000002
+HLVDL3                            00000003
+I2C_DAT                           00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+ID                                000002BA
+IDLEIE                            00000004
+IDLEIF                            00000004
+IDLEN                             00000007
+INDF0                             00000FEF
+INDF1                             00000FE7
+INDF2                             00000FDF
+INT0                              00000000
+INT0E                             00000004
+INT0F                             00000001
+INT0IE                            00000004
+INT0IF                            00000001
+INT1                              00000001
+INT1E                             00000003
+INT1F                             00000000
+INT1IE                            00000003
+INT1IF                            00000000
+INT1IP                            00000006
+INT1P                             00000006
+INT2                              00000002
+INT2E                             00000004
+INT2F                             00000001
+INT2IE                            00000004
+INT2IF                            00000001
+INT2IP                            00000007
+INT2P                             00000007
+INTCON                            00000FF2
+INTCON2                           00000FF1
+INTCON3                           00000FF0
+INTEDG0                           00000006
+INTEDG1                           00000005
+INTEDG2                           00000004
+INTSRC                            00000007
+IOFS                              00000002
+IPEN                              00000007
+IPR1                              00000F9F
+IPR2                              00000FA2
+IRCF0                             00000004
+IRCF1                             00000005
+IRCF2                             00000006
+IRVST                             00000005
+IVRST                             00000005
+LATA                              00000F89
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LATA4                             00000004
+LATA5                             00000005
+LATA6                             00000006
+LATB                              00000F8A
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LATC                              00000F8B
+LATC0                             00000000
+LATC1                             00000001
+LATC2                             00000002
+LATC6                             00000006
+LATC7                             00000007
+LATD                              00000F8C
+LATD0                             00000000
+LATD1                             00000001
+LATD2                             00000002
+LATD3                             00000003
+LATD4                             00000004
+LATD5                             00000005
+LATD6                             00000006
+LATD7                             00000007
+LATE                              00000F8D
+LATE0                             00000000
+LATE1                             00000001
+LATE2                             00000002
+LCD                               00000F82
+LVDCON                            00000FD2
+LVDEN                             00000004
+LVDIE                             00000002
+LVDIF                             00000002
+LVDIN                             00000005
+LVDIP                             00000002
+LVDL0                             00000000
+LVDL1                             00000001
+LVDL2                             00000002
+LVDL3                             00000003
+LVV0                              00000000
+LVV1                              00000001
+LVV2                              00000002
+LVV3                              00000003
+N                                 00000004
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_IPEN                          00000007
+NOT_PD                            00000002
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RI                            00000004
+NOT_T1SYNC                        00000002
+NOT_T3SYNC                        00000002
+NOT_TO                            00000003
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OESPP                             00000002
+OSC2                              00000006
+OSCCON                            00000FD3
+OSCFIE                            00000007
+OSCFIF                            00000007
+OSCFIP                            00000007
+OSCTUNE                           00000F9B
+OSTS                              00000003
+OV                                00000003
+P                                 00000004
+P1A                               00000002
+P1M0                              00000006
+P1M1                              00000007
+PC                                00000FF9
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PD                                00000002
+PDC0                              00000000
+PDC1                              00000001
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEIE_GIEL                         00000006
+PEN                               00000002
+PGC                               00000006
+PGD                               00000007
+PGM                               00000005
+PIDEE                             00000000
+PIDEF                             00000000
+PIE1                              00000F9D
+PIE2                              00000FA0
+PIR1                              00000F9E
+PIR2                              00000FA1
+PKTDIS                            00000004
+PLUSW0                            00000FEB
+PLUSW1                            00000FE3
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PLUSW2                            00000FDB
+POR                               00000001
+PORTA                             00000F80
+PORTB                             00000F81
+PORTC                             00000F82
+PORTD                             00000F83
+PORTE                             00000F84
+POSTDEC0                          00000FED
+POSTDEC1                          00000FE5
+POSTDEC2                          00000FDD
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+POSTINC2                          00000FDE
+PPB0                              00000000
+PPB1                              00000001
+PPBI                              00000001
+PPBRST                            00000006
+PR2                               00000FCB
+PREINC0                           00000FEC
+PREINC1                           00000FE4
+PREINC2                           00000FDC
+PROD                              00000FF3
+PRODH                             00000FF4
+PRODL                             00000FF3
+PRSEN                             00000007
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RBIP                              00000000
+RBPU                              00000007
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 26
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCIP                              00000005
+RCMT                              00000006
+RCON                              00000FD0
+RCREG                             00000FAE
+RCSTA                             00000FAB
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD16                              00000007
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RDPU                              00000007
+RDSPP                             00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+RE3                               00000003
+READ_WRITE                        00000002
+RESUME                            00000002
+RI                                00000004
+RSEN                              00000001
+RX                                00000007
+RX9                               00000006
+RX9D                              00000000
+RXDTP                             00000005
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SBOREN                            00000006
+SCKP                              00000004
+SCS0                              00000000
+SCS1                              00000001
+SE0                               00000005
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SOFIE                             00000006
+SOFIF                             00000006
+SPBRG                             00000FAF
+SPBRGH                            00000FB0
+SPEN                              00000007
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SPP0                              00000000
+SPP1                              00000001
+SPP2                              00000002
+SPP3                              00000003
+SPP4                              00000004
+SPP5                              00000005
+SPP6                              00000006
+SPP7                              00000007
+SPPBUSY                           00000004
+SPPCFG                            00000F63
+SPPCON                            00000F65
+SPPDATA                           00000F62
+SPPEN                             00000000
+SPPEPS                            00000F64
+SPPIE                             00000007
+SPPIF                             00000007
+SPPIP                             00000007
+SPPOWN                            00000001
+SREN                              00000005
+SSPADD                            00000FC8
+SSPBUF                            00000FC9
+SSPCON1                           00000FC6
+SSPCON2                           00000FC5
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPIP                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000FC7
+STALLIE                           00000005
+STALLIF                           00000005
+STATUS                            00000FD8
+STKFUL                            00000007
+STKOVF                            00000007
+STKPTR                            00000FFC
+STKPTR0                           00000000
+STKPTR1                           00000001
+STKPTR2                           00000002
+STKPTR3                           00000003
+STKPTR4                           00000004
+STKUNF                            00000006
+SUSPND                            00000001
+SWDTE                             00000000
+SWDTEN                            00000000
+SYNC                              00000004
+T08BIT                            00000006
+T0CKI                             00000004
+T0CON                             00000FD5
+T0CS                              00000005
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 28
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T0IE                              00000005
+T0IF                              00000002
+T0IP                              00000002
+T0PS0                             00000000
+T0PS1                             00000001
+T0PS2                             00000002
+T0SE                              00000004
+T13CKI                            00000000
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000FCD
+T1OSCEN                           00000003
+T1OSI                             00000001
+T1OSO                             00000000
+T1RUN                             00000006
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000FCA
+T2OUTPS0                          00000003
+T2OUTPS1                          00000004
+T2OUTPS2                          00000005
+T2OUTPS3                          00000006
+T3CCP1                            00000003
+T3CCP2                            00000006
+T3CKPS0                           00000004
+T3CKPS1                           00000005
+T3CON                             00000FB1
+T3NSYNC                           00000002
+T3SYNC                            00000002
+TABLAT                            00000FF5
+TBLPTR                            00000FF6
+TBLPTRH                           00000FF7
+TBLPTRL                           00000FF6
+TBLPTRU                           00000FF8
+TMR0                              00000FD6
+TMR0H                             00000FD7
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR0IP                            00000002
+TMR0L                             00000FD6
+TMR0ON                            00000007
+TMR1                              00000FCE
+TMR1CS                            00000001
+TMR1H                             00000FCF
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1IP                            00000000
+TMR1L                             00000FCE
+TMR1ON                            00000000
+TMR2                              00000FCC
+TMR2IE                            00000001
+TMR2IF                            00000001
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 29
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR2IP                            00000001
+TMR2ON                            00000002
+TMR3                              00000FB2
+TMR3CS                            00000001
+TMR3H                             00000FB3
+TMR3IE                            00000001
+TMR3IF                            00000001
+TMR3IP                            00000001
+TMR3L                             00000FB2
+TMR3ON                            00000000
+TO                                00000003
+TOS                               00000FFD
+TOSH                              00000FFE
+TOSL                              00000FFD
+TOSU                              00000FFF
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000F92
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISB                             00000F93
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000F94
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000F95
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000F96
+TRISE0                            00000000
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 30
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TRNIE                             00000003
+TRNIF                             00000003
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TX                                00000006
+TX9                               00000006
+TX9D                              00000000
+TXCKP                             00000004
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXIP                              00000004
+TXREG                             00000FAD
+TXSTA                             00000FAC
+UA                                00000001
+UADDR                             00000F6E
+UCFG                              00000F6F
+UCON                              00000F6D
+UEIE                              00000F6B
+UEIR                              00000F6A
+UEP0                              00000F70
+UEP1                              00000F71
+UEP10                             00000F7A
+UEP11                             00000F7B
+UEP12                             00000F7C
+UEP13                             00000F7D
+UEP14                             00000F7E
+UEP15                             00000F7F
+UEP2                              00000F72
+UEP3                              00000F73
+UEP4                              00000F74
+UEP5                              00000F75
+UEP6                              00000F76
+UEP7                              00000F77
+UEP8                              00000F78
+UEP9                              00000F79
+UERRIE                            00000001
+UERRIF                            00000001
+UFRM                              00000F66
+UFRMH                             00000F67
+UFRML                             00000F66
+UIE                               00000F69
+UIR                               00000F68
+UOEMON                            00000006
+UPUEN                             00000004
+URSTIE                            00000000
+URSTIF                            00000000
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 31
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+USBEN                             00000003
+USBIE                             00000005
+USBIF                             00000005
+USBIP                             00000005
+USTAT                             00000F6C
+UTEYE                             00000007
+UTRDIS                            00000003
+VCFG0                             00000004
+VCFG1                             00000005
+VDIRMAG                           00000007
+VREFM                             00000002
+VREFP                             00000003
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000FD1
+WR                                00000001
+WREG                              00000FE8
+WREN                              00000002
+WRERR                             00000003
+WRSPP                             00000006
+WS0                               00000000
+WS1                               00000001
+WS2                               00000002
+WS3                               00000003
+WUE                               00000001
+Z                                 00000002
+_BORV_0_2L                        000000E7
+_BORV_1_2L                        000000EF
+_BORV_2_2L                        000000F7
+_BORV_3_2L                        000000FF
+_BOR_OFF_2L                       000000F9
+_BOR_ON_2L                        000000FF
+_BOR_ON_ACTIVE_2L                 000000FD
+_BOR_SOFT_2L                      000000FB
+_CCP2MX_OFF_3H                    000000FE
+_CCP2MX_ON_3H                     000000FF
+_CONFIG1H                         00300001
+_CONFIG1L                         00300000
+_CONFIG2H                         00300003
+_CONFIG2L                         00300002
+_CONFIG3H                         00300005
+_CONFIG4L                         00300006
+_CONFIG5H                         00300009
+_CONFIG5L                         00300008
+_CONFIG6H                         0030000B
+_CONFIG6L                         0030000A
+_CONFIG7H                         0030000D
+_CONFIG7L                         0030000C
+_CP0_OFF_5L                       000000FF
+_CP0_ON_5L                        000000FE
+_CP1_OFF_5L                       000000FF
+_CP1_ON_5L                        000000FD
+_CP2_OFF_5L                       000000FF
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 32
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CP2_ON_5L                        000000FB
+_CP3_OFF_5L                       000000FF
+_CP3_ON_5L                        000000F7
+_CPB_OFF_5H                       000000FF
+_CPB_ON_5H                        000000BF
+_CPD_OFF_5H                       000000FF
+_CPD_ON_5H                        0000007F
+_CPUDIV_OSC1_PLL2_1L              000000E7
+_CPUDIV_OSC2_PLL3_1L              000000EF
+_CPUDIV_OSC3_PLL4_1L              000000F7
+_CPUDIV_OSC4_PLL6_1L              000000FF
+_DEBUG_OFF_4L                     000000FF
+_DEBUG_ON_4L                      0000007F
+_DEVID1                           003FFFFE
+_DEVID2                           003FFFFF
+_EBTR0_OFF_7L                     000000FF
+_EBTR0_ON_7L                      000000FE
+_EBTR1_OFF_7L                     000000FF
+_EBTR1_ON_7L                      000000FD
+_EBTR2_OFF_7L                     000000FF
+_EBTR2_ON_7L                      000000FB
+_EBTR3_OFF_7L                     000000FF
+_EBTR3_ON_7L                      000000F7
+_EBTRB_OFF_7H                     000000FF
+_EBTRB_ON_7H                      000000BF
+_FCMEN_OFF_1H                     000000BF
+_FCMEN_ON_1H                      000000FF
+_FOSC_ECIO_EC_1H                  000000F4
+_FOSC_ECPLLIO_EC_1H               000000F6
+_FOSC_ECPLL_EC_1H                 000000F7
+_FOSC_EC_EC_1H                    000000F5
+_FOSC_HSPLL_HS_1H                 000000FE
+_FOSC_HS_1H                       000000FC
+_FOSC_INTOSCIO_EC_1H              000000F8
+_FOSC_INTOSC_EC_1H                000000F9
+_FOSC_INTOSC_HS_1H                000000FB
+_FOSC_INTOSC_XT_1H                000000FA
+_FOSC_XTPLL_XT_1H                 000000F2
+_FOSC_XT_XT_1H                    000000F0
+_ICPRT_OFF_4L                     000000DF
+_ICPRT_ON_4L                      000000FF
+_IDLOC0                           00200000
+_IDLOC1                           00200001
+_IDLOC2                           00200002
+_IDLOC3                           00200003
+_IDLOC4                           00200004
+_IDLOC5                           00200005
+_IDLOC6                           00200006
+_IDLOC7                           00200007
+_IESO_OFF_1H                      0000007F
+_IESO_ON_1H                       000000FF
+_LPT1OSC_OFF_3H                   000000FB
+_LPT1OSC_ON_3H                    000000FF
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 33
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_LVP_OFF_4L                       000000FB
+_LVP_ON_4L                        000000FF
+_MCLRE_OFF_3H                     0000007F
+_MCLRE_ON_3H                      000000FF
+_PBADEN_OFF_3H                    000000FD
+_PBADEN_ON_3H                     000000FF
+_PLLDIV_10_1L                     000000FE
+_PLLDIV_12_1L                     000000FF
+_PLLDIV_1_1L                      000000F8
+_PLLDIV_2_1L                      000000F9
+_PLLDIV_3_1L                      000000FA
+_PLLDIV_4_1L                      000000FB
+_PLLDIV_5_1L                      000000FC
+_PLLDIV_6_1L                      000000FD
+_PWRT_OFF_2L                      000000FF
+_PWRT_ON_2L                       000000FE
+_STVREN_OFF_4L                    000000FE
+_STVREN_ON_4L                     000000FF
+_USBDIV_1_1L                      000000DF
+_USBDIV_2_1L                      000000FF
+_VREGEN_OFF_2L                    000000DF
+_VREGEN_ON_2L                     000000FF
+_WDTPS_1024_2H                    000000F5
+_WDTPS_128_2H                     000000EF
+_WDTPS_16384_2H                   000000FD
+_WDTPS_16_2H                      000000E9
+_WDTPS_1_2H                       000000E1
+_WDTPS_2048_2H                    000000F7
+_WDTPS_256_2H                     000000F1
+_WDTPS_2_2H                       000000E3
+_WDTPS_32768_2H                   000000FF
+_WDTPS_32_2H                      000000EB
+_WDTPS_4096_2H                    000000F9
+_WDTPS_4_2H                       000000E5
+_WDTPS_512_2H                     000000F3
+_WDTPS_64_2H                      000000ED
+_WDTPS_8192_2H                    000000FB
+_WDTPS_8_2H                       000000E7
+_WDT_OFF_2H                       000000FE
+_WDT_ON_2H                        000000FF
+_WRT0_OFF_6L                      000000FF
+_WRT0_ON_6L                       000000FE
+_WRT1_OFF_6L                      000000FF
+_WRT1_ON_6L                       000000FD
+_WRT2_OFF_6L                      000000FF
+_WRT2_ON_6L                       000000FB
+_WRT3_OFF_6L                      000000FF
+_WRT3_ON_6L                       000000F7
+_WRTB_OFF_6H                      000000FF
+_WRTB_ON_6H                       000000BF
+_WRTC_OFF_6H                      000000FF
+_WRTC_ON_6H                       000000DF
+_WRTD_OFF_6H                      000000FF
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 34
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WRTD_ON_6H                       0000007F
+_XINST_OFF_4L                     000000BF
+_XINST_ON_4L                      000000FF
+__18F4550                         00000001
+__DEBUG                           1
+checkEIGHT                        00000496
+checkFIVE                         00000478
+checkFOUR                         0000046E
+checkID                           00000448
+checkNAME                         00000440
+checkNINE                         000004A0
+checkONE                          00000450
+checkSEVEN                        0000048C
+checkSIX                          00000482
+checkSTAR                         000004AA
+checkTAG                          000004BE
+checkTHREE                        00000464
+checkTWO                          0000045A
+checkZERO                         000004B4
+disp0                             0000030C
+disp1                             0000031E
+disp2                             00000330
+disp3                             00000342
+disp4                             00000354
+disp5                             00000366
+disp6                             00000378
+disp7                             0000038A
+disp8                             0000039C
+disp9                             000003AE
+dispHASH                          000003D2
+dispSTAR                          000003C0
+dup_nop                           
+i                                 000000F7
+innerloop                         00000000
+outA                              000003EE
+outB                              000003F8
+outC                              00000402
+outD                              0000040C
+outerloop                         00000001
+regCMD                            0000001A
+regDATA                           00000028
+start                             00000416
+MPASM  5.51                    LCDPROJECT.ASM   11-26-2020  18:14:41         PAGE 35
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+0000 : XXXX----XX------ --------XXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+00C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0180 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+01C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0200 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0240 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0280 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+02C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0300 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0340 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0380 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+03C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0400 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0440 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0480 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+04C0 : XXXXXXXXXX------ ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Bytes Used:  1208
+Program Memory Bytes Free: 31560
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
